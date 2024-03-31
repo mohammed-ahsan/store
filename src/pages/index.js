@@ -191,10 +191,10 @@ const Home = ({
               showingTranslateValue={showingTranslateValue}
             /> */}
 
-            <GamingGiftCards
+            {/* <GamingGiftCards
               categories={categories}
               showingTranslateValue={showingTranslateValue}
-            />
+            /> */}
             <All_Category categories={categories}
               showingTranslateValue={showingTranslateValue} />
 
