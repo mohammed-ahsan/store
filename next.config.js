@@ -86,7 +86,6 @@ const withPWA = require("next-pwa")({
 
 module.exports = withPWA({
   trailingSlash: true,
-  distDir: 'build',
   reactStrictMode: true,
   eslint: {
     // Warning: This allows production builds to successfully complete even if
