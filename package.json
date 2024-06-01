@@ -1,5 +1,5 @@
 {
-  "name": "Gigapixel-Store",
+  "name": "Gigapixel-store",
   "version": "0.1.0",
   "description": "this is Gigapixel-store built with next.js and tailwindcss",
   "homepage": "https://Gigapixel-store.vercel.app/",
@@ -34,6 +34,7 @@
     "iconv-lite": "^0.6.3",
     "js-cookie": "^3.0.1",
     "local-storage": "^2.0.0",
+    "mongoose": "^8.3.4",
     "next": "^13.5.5",
     "next-auth": "^4.20.1",
     "next-pwa": "^5.6.0",

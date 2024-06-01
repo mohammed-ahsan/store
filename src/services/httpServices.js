@@ -1,12 +1,12 @@
-import axios from 'axios';
-import Cookies from 'js-cookie';
+import axios from "axios";
+import Cookies from "js-cookie";
 
 const instance = axios.create({
   baseURL: `${process.env.NEXT_PUBLIC_API_BASE_URL}`,
   timeout: 500000,
   headers: {
-    Accept: 'application/json',
-    'Content-Type': 'application/json',
+    Accept: "application/json",
+    "Content-Type": "application/json",
   },
 });
 
@@ -14,8 +14,8 @@ const instance = axios.create({
 instance.interceptors.request.use(function (config) {
   // Do something before request is sent
   let userInfo;
-  if (Cookies.get('userInfo')) {
-    userInfo = JSON.parse(Cookies.get('userInfo'));
+  if (Cookies.get("userInfo")) {
+    userInfo = JSON.parse(Cookies.get("userInfo"));
   }
 
   return {
@@ -36,6 +36,8 @@ const requests = {
     instance.post(url, body, headers).then(responseBody),
 
   put: (url, body) => instance.put(url, body).then(responseBody),
+
+  patch: (url, body) => instance.patch(url, body).then(responseBody),
 };
 
 export default requests;

@@ -18,9 +18,7 @@ const Layout = ({ title, description, children }) => {
       <div className="font-sans">
         <Head>
           <title>
-            {title
-              ? `Gigapixel | ${title}`
-              : "Gigapixel - E-commerce Website"}
+            {title ? `Gigapixel | ${title}` : "Gigapixel - E-commerce Website"}
           </title>
           {description && <meta name="description" content={description} />}
           <link ref="icon" href="/favicon.png" />

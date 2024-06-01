@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
-import dynamic from 'next/dynamic';
-import Drawer from 'rc-drawer';
+import React, { useContext } from "react";
+import dynamic from "next/dynamic";
+import Drawer from "rc-drawer";
 
 //internal import
-import Cart from '@component/cart/Cart';
-import { SidebarContext } from '@context/SidebarContext';
+import Cart from "@component/cart/Cart";
+import { SidebarContext } from "@context/SidebarContext";
 
 const CartDrawer = () => {
   const { cartDrawerOpen, closeCartDrawer } = useContext(SidebarContext);
@@ -15,7 +15,7 @@ const CartDrawer = () => {
       onClose={closeCartDrawer}
       parent={null}
       level={null}
-      placement={'right'}
+      placement={"right"}
     >
       <Cart />
     </Drawer>

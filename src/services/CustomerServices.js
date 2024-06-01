@@ -32,6 +32,9 @@ const CustomerServices = {
   updateCustomer: async (id, body) => {
     return requests.put(`/customer/${id}`, body);
   },
+  updateCustomerBalance: async (id, body) => {
+    return requests.patch(`/customer/balance/${id}`, body);
+  },
 };
 
 export default CustomerServices;

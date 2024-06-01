@@ -1,5 +1,6 @@
 import Cookies from "js-cookie";
 import dayjs from "dayjs";
+import mongoose from "mongoose";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -14,6 +15,7 @@ import CouponServices from "@services/CouponServices";
 import { notifyError, notifySuccess } from "@utils/toast";
 import SettingServices from "@services/SettingServices";
 import NotificationServices from "@services/NotificaitonServices";
+import CustomerServices from "src/services/CustomerServices";
 
 const useCheckoutSubmit = () => {
   const {
@@ -164,10 +166,35 @@ const useCheckoutSubmit = () => {
           return;
         }
       }
-      if (data.paymentMethod === "Cash") {
-        const res = await OrderServices.addOrder(orderInfo);
 
-        // notification info
+      console.log(userInfo.balance);
+      if (data.paymentMethod === "Cash") {
+        if (userInfo.balance < total) {
+          notifyError("Insufficient balance In Your Wallet");
+          setIsCheckoutSubmit(false);
+          return;
+        }
+        const res = await OrderServices.addOrder(orderInfo);
+        try {
+          const newBalance = userInfo.balance - total;
+          const update = { balance: newBalance.toString() };
+
+          const response = await CustomerServices.updateCustomerBalance(
+            userInfo._id,
+            update
+          );
+          if (response.status !== 200) {
+            // Handle non-200 status codes
+            notifyError(`Unexpected response status: ${response.status}`);
+          } else {
+            // Handle success
+            notifyError("Balance updated successfully.");
+          }
+        } catch (error) {
+          // Error handling
+          console.error("Error updating balance:", error);
+          notifyError(`Error updating balance: ${error.message}`);
+        }
         const notificationInfo = {
           orderId: res._id,
           message: `${res.user_info.name}, Placed ${currency}${parseFloat(

@@ -7,6 +7,7 @@ import { IoLockOpenOutline } from "react-icons/io5";
 import {
   FiCheck,
   FiFileText,
+  FiGift,
   FiGrid,
   FiList,
   FiRefreshCw,
@@ -86,6 +87,11 @@ const Dashboard = ({ title, description, children }) => {
       icon: FiList,
     },
     {
+      title: "My Wallet",
+      href: "/user/my-wallet",
+      icon: FiGift,
+    },
+    {
       title: showingTranslateValue(
         storeCustomizationSetting?.dashboard?.update_profile
       ),
@@ -114,6 +120,46 @@ const Dashboard = ({ title, description, children }) => {
             <div className="py-10 lg:py-12 flex flex-col lg:flex-row w-full">
               <div className="flex-shrink-0 w-full lg:w-80 mr-7 lg:mr-10  xl:mr-10 ">
                 <div className="bg-white p-4 sm:p-5 lg:p-8 rounded-md sticky top-32">
+                  <div className="flex items-center mb-4">
+                    <div className="flex items-center mb-4">
+                      <div
+                        className="w-12 h-12 rounded-full overflow-hidden mr-4 flex justify-center items-center"
+                        style={{ backgroundColor: "#10B981" }}
+                      >
+                        {userInfo?.avatar ? (
+                          <img
+                            src={userInfo.avatar}
+                            alt={userInfo?.name}
+                            className="w-full h-full rounded-full"
+                          />
+                        ) : (
+                          <span
+                            className="text-lg font-bold text-white"
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              height: "100%",
+                              width: "100%",
+                              borderRadius: "50%",
+                            }}
+                          >
+                            {userInfo?.name
+                              ? userInfo.name.charAt(0).toUpperCase()
+                              : ""}
+                          </span>
+                        )}
+                      </div>
+                      <div>
+                        <h2
+                          className="text-lg font-serif font-bold"
+                          style={{ textAlign: "center" }}
+                        >
+                          {userInfo?.name ? userInfo.name : "No user name"}
+                        </h2>
+                      </div>
+                    </div>
+                  </div>
                   {userSidebar?.map((item) => (
                     <span
                       key={item.title}

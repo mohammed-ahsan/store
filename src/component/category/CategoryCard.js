@@ -15,7 +15,7 @@ const CategoryCard = ({ title, slug, icon, id }) => {
   // handle show category
   const showCategory = (id, slug) => {
     setShow(!show);
-    router.push(`/category/${slug}`);
+    router.push(`/productsearchid/${id}`);
     closeCategoryDrawer();
   };
 
